@@ -1,2 +1,6 @@
 data_ingestion :
+
   url : "https://raw.githubusercontent.com/Rocky0412/Datasets/master/Reddit_Data.csv"
+
+data_preprocessing:
+  test_size : 0.2

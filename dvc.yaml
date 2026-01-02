@@ -7,3 +7,13 @@ stages:
     - data_ingestion.url
     outs:
     - data/raw
+  data_preprocessing:
+    cmd: python3 src/data_preprocessing/data_preprocess.py
+    deps:
+    - data/raw
+    - src/data_preprocessing/data_preprocess.py
+    params:
+    - data_preprocessing.test_size
+    outs:
+    - data/processed/test
+    - data/processed/train

@@ -17,3 +17,29 @@ stages:
       md5: 448fbdb9c057e592cf34c45905658554.dir
       size: 6839501
       nfiles: 1
+  data_preprocessing:
+    cmd: python3 src/data_preprocessing/data_preprocess.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 448fbdb9c057e592cf34c45905658554.dir
+      size: 6839501
+      nfiles: 1
+    - path: src/data_preprocessing/data_preprocess.py
+      hash: md5
+      md5: 4774fafd7175966d4b9d724ae38dbd07
+      size: 3947
+    params:
+      params.yaml:
+        data_preprocessing.test_size: 0.2
+    outs:
+    - path: data/processed/test
+      hash: md5
+      md5: 4afc576c5ae8366603f1e7914ce7476d.dir
+      size: 974537
+      nfiles: 2
+    - path: data/processed/train
+      hash: md5
+      md5: 116aca9f1e3f2864ae56167ab261471b.dir
+      size: 4026636
+      nfiles: 2
