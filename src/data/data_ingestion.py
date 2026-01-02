@@ -5,6 +5,22 @@ import numpy as np # type: ignore
 import io
 import logging 
 import os
+import yaml # type: ignore
+
+#--------------------Load params yaml------------------------
+
+# Directory where THIS file lives: src/data
+CURRENT_DIR = os.path.dirname(__file__)
+
+# Two levels up → project root (sentiment_analysis/)
+ROOT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))
+
+# Full path to params.yaml
+PARAMS_PATH = os.path.join(ROOT_DIR, "params.yaml")
+
+with open(PARAMS_PATH,'r') as f:
+    params=yaml.safe_load(f)
+
 
 # ----------------------- LOGGER SETUP -----------------------
 logger = logging.getLogger(__name__)
@@ -63,5 +79,6 @@ def data_ingestion(url: str = None) -> pd.DataFrame:
 # ----------------------- MAIN -----------------------
 if __name__ == "__main__":
     logger.info("Data Ingestion Started")
-    url = "https://raw.githubusercontent.com/Rocky0412/Datasets/master/Reddit_Data.csv"
+    #url = "https://raw.githubusercontent.com/Rocky0412/Datasets/master/Reddit_Data.csv"
+    url=params["data_ingestion"]["url"]
     df = data_ingestion(url)
