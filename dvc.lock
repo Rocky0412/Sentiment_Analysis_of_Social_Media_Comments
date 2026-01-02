@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python3 src/data/data_ingestion.py
+    deps:
+    - path: src/data/data_ingestion.py
+      hash: md5
+      md5: b99937f853838c1947a84336ad57cfb0
+      size: 2157
+    params:
+      params.yaml:
+        data_ingestion.url: 
+          https://raw.githubusercontent.com/Rocky0412/Datasets/master/Reddit_Data.csv
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 448fbdb9c057e592cf34c45905658554.dir
+      size: 6839501
+      nfiles: 1
