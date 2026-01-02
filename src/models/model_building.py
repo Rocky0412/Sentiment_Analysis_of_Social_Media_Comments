@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import logging
 from xgboost import XGBClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 # -------------------- Paths ------------------------
 CURRENT_DIR = os.path.dirname(__file__)
@@ -39,22 +40,10 @@ def train_model(input_path, model_path):
 
     logger.info("Initializing XGBoost classifier for multiclass...")
 
-    model = XGBClassifier(
-        n_estimators=300,
-        max_depth=6,
-        learning_rate=0.1,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        min_child_weight=1,
-        gamma=0,
-        objective="multi:softprob",   # multiclass objective
-        num_class=3,                  # number of classes
-        eval_metric="mlogloss",
-        tree_method="hist",
-        verbosity=1
-    )
 
-    logger.info("Training XGBoost model...")
+    model=RandomForestClassifier(max_depth=15,n_estimators=100,criterion='entropy')
+
+    logger.info("Training RF model...")
     model.fit(X, y)
 
     os.makedirs(model_path, exist_ok=True)

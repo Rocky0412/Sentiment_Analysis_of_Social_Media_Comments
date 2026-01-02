@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import pickle
 import logging
+import yaml
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report,accuracy_score,f1_score,recall_score,precision_score
 
@@ -68,16 +69,31 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
     logger.info(f"Recall: {recall:.4f}")
     logger.info(f"Precision: {precision:.4f}")
     logger.info(f"\nClassification Report:\n{report}")
+            # Assuming ROOT_DIR is defined
+    metric_dir = os.path.join(ROOT_DIR, 'Metric')
 
-    return {
-        "accuracy": acc,
-        "f1": f1,
-        "recall": recall,
-        "precision": precision,
-        "classification_report": report
-    }
+        # Create the directory if it doesn't exist
+    os.makedirs(metric_dir, exist_ok=True)
+    print(metric_dir)
 
+    # Metrics dictionary
+    metric = {
+            "accuracy": acc,
+            "f1": f1,
+            "recall": recall,
+            "precision": precision,
+        }
+
+        # File path for YAML
+    with open(os.path.join(metric_dir,'metric.yaml'),'w') as f:
+        yaml.dump(metric,f,indent=4)
+        
+        
     
+    
+    return metric
+
+            
 
 
 if __name__ == "__main__":

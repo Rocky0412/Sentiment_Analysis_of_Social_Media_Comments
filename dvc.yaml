@@ -25,7 +25,7 @@ stages:
     - src/features/feature_engineering.py
     outs:
     - vectorizer/vectorizer.pkl
-  model_building :
+  model_building:
     cmd: python3 src/models/model_building.py
     deps:
     - vectorizer/vectorizer.pkl
@@ -33,3 +33,12 @@ stages:
     outs:
     - model/model.pkl
 
+  model_evalution:
+    cmd: python3 src/models/model_evaluation.py
+    deps:
+    - model
+    - src/models/model_evaluation.py
+    - vectorizer
+    metrics:
+    - Metric/metric.yaml:
+        cache: false
