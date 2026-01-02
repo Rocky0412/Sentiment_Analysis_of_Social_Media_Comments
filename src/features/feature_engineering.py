@@ -62,12 +62,14 @@ def feature_extraction(path: str = None) -> None:
 
     with open(os.path.join(vectorizer_dir, "vectorizer.pkl"), "wb") as f:
         pickle.dump(vectorizer, f)
-
+    
     # Save resampled train data
     pd.DataFrame(X_res).to_csv(os.path.join(path, "train/xtrain_vectorized.csv"), index=False)
     y_res.to_csv(os.path.join(path, "train/ytrain_vectorized.csv"), index=False)
 
     logger.info("Feature extraction completed successfully")
+
+    return vectorizer
 
 
 if __name__ == "__main__":

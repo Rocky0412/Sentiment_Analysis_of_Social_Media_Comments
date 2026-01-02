@@ -63,6 +63,7 @@ def train_model(input_path, model_path):
         pickle.dump(model, f)
 
     logger.info("XGBoost model trained and saved ✔")
+    return model
 
 
 if __name__ == "__main__":
