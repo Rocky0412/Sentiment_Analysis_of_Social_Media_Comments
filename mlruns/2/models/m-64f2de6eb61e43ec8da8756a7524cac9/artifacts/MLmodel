@@ -1,0 +1,22 @@
+artifact_path: /Users/rocky/Desktop/MlopsProject/Sentiment_Analysis/sentiment_analysis/mlruns/2/models/m-64f2de6eb61e43ec8da8756a7524cac9/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+mlflow_version: 3.8.1
+model_id: m-64f2de6eb61e43ec8da8756a7524cac9
+model_size_bytes: 6372052
+model_uuid: m-64f2de6eb61e43ec8da8756a7524cac9
+prompts: null
+run_id: fe194506fed740cc9e075baed3c32891
+utc_time_created: '2026-01-03 16:16:07.046528'

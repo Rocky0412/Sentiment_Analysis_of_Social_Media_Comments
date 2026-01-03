@@ -39,6 +39,13 @@ stages:
     - model
     - src/models/model_evaluation.py
     - vectorizer
+    outs:
+    - Model_info/experiment.json
     metrics:
     - Metric/metric.yaml:
         cache: false
+  register_model:
+    cmd: python3 src/models/model_register.py
+    deps:
+    - Model_info/experiment.json
+    - src/models/model_register.py
