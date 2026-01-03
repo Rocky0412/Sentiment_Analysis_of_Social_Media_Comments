@@ -40,9 +40,9 @@ stages:
       nfiles: 2
     - path: data/processed/train
       hash: md5
-      md5: 116aca9f1e3f2864ae56167ab261471b.dir
-      size: 4026636
-      nfiles: 2
+      md5: 9d3616767cc797ab07eab9925b70b3dd.dir
+      size: 161306975
+      nfiles: 4
   feature_engineering:
     cmd: python3 src/features/feature_engineering.py
     deps:
