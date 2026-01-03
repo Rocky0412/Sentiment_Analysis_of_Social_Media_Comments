@@ -58,7 +58,7 @@ stages:
     outs:
     - path: vectorizer/vectorizer.pkl
       hash: md5
-      md5: 40ed4b6cbe8550ddace140468b2eeed0
+      md5: b25cd18859917eecda5acacd2482e5f2
       size: 36715
   model_building:
     cmd: python3 src/models/model_building.py
@@ -70,47 +70,47 @@ stages:
       nfiles: 2
     - path: vectorizer/vectorizer.pkl
       hash: md5
-      md5: 40ed4b6cbe8550ddace140468b2eeed0
+      md5: b25cd18859917eecda5acacd2482e5f2
       size: 36715
     outs:
     - path: model/model.pkl
       hash: md5
-      md5: 392f918a5925b0c75836e5f4ca0c4ef7
-      size: 6351252
+      md5: 6a7642e1aa3d724c2276ecc471b874fb
+      size: 6360774
   model_evalution:
     cmd: python3 src/models/model_evaluation.py
     deps:
     - path: model
       hash: md5
-      md5: d29290d3235a7784cdee4d28fdebab9a.dir
-      size: 6351263
+      md5: e7cee9c704e5ebf559a49a37a77351a5.dir
+      size: 6360785
       nfiles: 2
     - path: src/models/model_evaluation.py
       hash: md5
-      md5: 7a073c7b68fb19d49273c523e9f85289
-      size: 4943
+      md5: 93b14b16f570e1ae57098c7729e69bb9
+      size: 4937
     - path: vectorizer
       hash: md5
-      md5: da88c5ebb242face85655d0933ab6944.dir
+      md5: 7d8d19279034b325a0c6607d667f7c61.dir
       size: 36731
       nfiles: 2
     outs:
     - path: Metric/metric.yaml
       hash: md5
-      md5: 1e0f52adee80a1c1b8d4926d7869ca8a
-      size: 89
+      md5: 47b94ed31683050494ffd3b62f5389a9
+      size: 109
     - path: Model_info/experiment.json
       hash: md5
-      md5: a0c41d4c471c9863e10bf87d308ab359
-      size: 213
+      md5: 55f8efe6cdb312f745bc4484b79acbf3
+      size: 210
   register_model:
     cmd: python3 src/models/model_register.py
     deps:
     - path: Model_info/experiment.json
       hash: md5
-      md5: a0c41d4c471c9863e10bf87d308ab359
-      size: 213
+      md5: 55f8efe6cdb312f745bc4484b79acbf3
+      size: 210
     - path: src/models/model_register.py
       hash: md5
-      md5: 70a9188586874f7bb2cf22bc903908aa
-      size: 2651
+      md5: 273cca37a810c1495b7d8b677c5f5e1a
+      size: 3668

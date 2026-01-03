@@ -46,7 +46,7 @@ def load_model_info(path: str) -> dict:
 
 
 # ---------------------- Register Model ----------------------------
-def register_model(model_info):
+'''def register_model(model_info):
     try:
         run_id = model_info["run_id"]
         artifact_path = model_info.get("artifact_path", model_info.get("model", "model"))
@@ -63,6 +63,37 @@ def register_model(model_info):
         )
 
         client=mlflow.client.MlflowClient()
+        client.transition_model_version_stage(
+            name='sentiment_analysis_model',
+            version=model_version.version,
+            stage="Staging"
+        )
+
+        logger.info(f"Model registered successfully: version={model_version.version}")
+
+    except Exception as e:
+        logger.error(f"Model registration failed: {e}")
+
+'''
+def register_model(model_info):
+    try:
+        # Prefer using the full artifact_uri if available
+        if "artifact_uri" in model_info:
+            model_uri = model_info["artifact_uri"]
+        else:
+            # fallback to run_id + artifact path
+            run_id = model_info["run_id"]
+            artifact_path = model_info.get("model", "model")
+            model_uri = f"runs:/{run_id}/{artifact_path}"
+
+        logger.info(f"Registering model from URI: {model_uri}")
+
+        client = mlflow.tracking.MlflowClient()
+        model_version = mlflow.register_model(
+            model_uri=model_uri,
+            name="sentiment_analysis_model"
+        )
+
         client.transition_model_version_stage(
             name='sentiment_analysis_model',
             version=model_version.version,

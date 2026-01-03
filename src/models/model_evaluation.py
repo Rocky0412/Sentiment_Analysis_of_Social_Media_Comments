@@ -121,7 +121,7 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
         mlflow.log_metrics(
             metrics=metric
         )
-        mlflow.sklearn.log_model(model,"rf_model")
+        mlflow.sklearn.log_model(model,"model")
 
         mlflow.log_artifact(vectorizer_path)
 
@@ -130,7 +130,7 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
         model_info={
             "run_id" :run_id,
             "artifact_uri": artifact_uri,
-            "model":"rf_model"
+            "model":"model"
         }
 
         '''model_uri = f"runs:/{run_id}/rf_model"
