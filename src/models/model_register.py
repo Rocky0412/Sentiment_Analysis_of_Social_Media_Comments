@@ -6,7 +6,8 @@ import json
 import mlflow
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, accuracy_score, f1_score, recall_score, precision_score
-
+import dagshub
+dagshub.init(repo_owner='Rocky0412', repo_name='Sentiment_Analysis_of_Social_Media_Comments', mlflow=True)
 # -------------------- Paths ------------------------
 CURRENT_DIR = os.path.dirname(__file__)
 ROOT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))

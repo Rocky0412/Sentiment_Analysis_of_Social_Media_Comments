@@ -8,6 +8,9 @@ from xgboost import XGBClassifier
 import mlflow
 from sklearn.metrics import classification_report,accuracy_score,f1_score,recall_score,precision_score
 
+import dagshub
+dagshub.init(repo_owner='Rocky0412', repo_name='Sentiment_Analysis_of_Social_Media_Comments', mlflow=True)
+
 # -------------------- Paths ------------------------
 CURRENT_DIR = os.path.dirname(__file__)
 ROOT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))
@@ -46,7 +49,8 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
         logger.error("Invalid path")
         raise ValueError("Invalid path")
     
-    mlflow.set_registry_uri(uri='http://127.0.0.1:5000')
+    mlflow.set_registry_uri(uri='https://dagshub.com/Rocky0412/Sentiment_Analysis_of_Social_Media_Comments.mlflow')
+
     mlflow.set_experiment('Sentiment Analysis Using RF')
     
     with mlflow.start_run() as run:
