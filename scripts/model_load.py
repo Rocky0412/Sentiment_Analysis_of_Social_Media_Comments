@@ -1,12 +1,13 @@
 import mlflow
-from mlflow.tracking import MlflowClient
+import mlflow.sklearn
 
-mlflow.set_tracking_uri('https://dagshub.com/Rocky0412/Sentiment_Analysis_of_Social_Media_Comments.mlflow')
+mlflow.set_tracking_uri("http://ec2-13-232-51-26.ap-south-1.compute.amazonaws.com:8000")
 
-def load_model_from_model_registry(model_name,version):
-    model_uri=f"models:/{model_name}/{version}"
-    model=mlflow.pyfunc.load_model(model_uri=model_uri)
-    return model
+run_id = "ac4746e981c141f3b710fb6c3ea5a470"
+artifact_path = "model"  # same as used in log_model
 
-model=load_model_from_model_registry('sentiment_analysis_model',"Staging")
-print('Model loaded Successfully')
+model_uri = f"runs:/{run_id}/{artifact_path}"
+model = mlflow.sklearn.load_model(model_uri)
+
+
+
