@@ -7,7 +7,7 @@ import mlflow
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, accuracy_score, f1_score, recall_score, precision_score
 import dagshub
-dagshub.init(repo_owner='Rocky0412', repo_name='Sentiment_Analysis_of_Social_Media_Comments', mlflow=True)
+#dagshub.init(repo_owner='Rocky0412', repo_name='Sentiment_Analysis_of_Social_Media_Comments', mlflow=True)
 # -------------------- Paths ------------------------
 CURRENT_DIR = os.path.dirname(__file__)
 ROOT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))
@@ -75,6 +75,11 @@ def load_model_info(path: str) -> dict:
         logger.error(f"Model registration failed: {e}")
 
 '''
+mlflow_uri='http://ec2-13-232-51-26.ap-south-1.compute.amazonaws.com:8000'
+#mlflow.set_registry_uri(uri='https://dagshub.com/Rocky0412/Sentiment_Analysis_of_Social_Media_Comments.mlflow')
+mlflow.set_tracking_uri(mlflow_uri) #used to set uri
+mlflow.set_registry_uri(uri=mlflow_uri) #used to register model
+
 def register_model(model_info):
     try:
         # Prefer using the full artifact_uri if available

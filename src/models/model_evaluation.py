@@ -9,7 +9,7 @@ import mlflow
 from sklearn.metrics import classification_report,accuracy_score,f1_score,recall_score,precision_score
 
 import dagshub
-dagshub.init(repo_owner='Rocky0412', repo_name='Sentiment_Analysis_of_Social_Media_Comments', mlflow=True)
+#dagshub.init(repo_owner='Rocky0412', repo_name='Sentiment_Analysis_of_Social_Media_Comments', mlflow=True)
 
 # -------------------- Paths ------------------------
 CURRENT_DIR = os.path.dirname(__file__)
@@ -48,8 +48,11 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
     if model_path is None or vectorizer_path is None:
         logger.error("Invalid path")
         raise ValueError("Invalid path")
-    
-    mlflow.set_registry_uri(uri='https://dagshub.com/Rocky0412/Sentiment_Analysis_of_Social_Media_Comments.mlflow')
+    mlflow_uri='http://ec2-13-232-51-26.ap-south-1.compute.amazonaws.com:8000'
+    #mlflow.set_registry_uri(uri='https://dagshub.com/Rocky0412/Sentiment_Analysis_of_Social_Media_Comments.mlflow')
+    mlflow.set_tracking_uri(mlflow_uri) #used to set uri
+    mlflow.set_registry_uri(uri=mlflow_uri) #used to register model
+
 
     mlflow.set_experiment('Sentiment Analysis Using RF')
     
@@ -121,7 +124,7 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
         mlflow.log_metrics(
             metrics=metric
         )
-        mlflow.sklearn.log_model(model,"model")
+        logged_model=mlflow.sklearn.log_model(model,"model")
 
         mlflow.log_artifact(vectorizer_path)
 
@@ -130,7 +133,8 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
         model_info={
             "run_id" :run_id,
             "artifact_uri": artifact_uri,
-            "model":"model"
+            "model":"model",
+            "model_uri":logged_model.model_uri
         }
 
         '''model_uri = f"runs:/{run_id}/rf_model"
