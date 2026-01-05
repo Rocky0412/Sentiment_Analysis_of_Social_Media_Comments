@@ -58,7 +58,7 @@ stages:
     outs:
     - path: vectorizer/vectorizer.pkl
       hash: md5
-      md5: 662952215a21e992b3f79c69770868c9
+      md5: 80e94c9a0cfcf405a5a926d4f3195085
       size: 36715
   model_building:
     cmd: python3 src/models/model_building.py
@@ -70,47 +70,47 @@ stages:
       nfiles: 2
     - path: vectorizer/vectorizer.pkl
       hash: md5
-      md5: 662952215a21e992b3f79c69770868c9
+      md5: 80e94c9a0cfcf405a5a926d4f3195085
       size: 36715
     outs:
     - path: model/model.pkl
       hash: md5
-      md5: 24dcaad434da5c572424d5de4875173c
-      size: 6351945
+      md5: 1dd77087badeec7967ceb8446d2d96fd
+      size: 6226996
   model_evalution:
     cmd: python3 src/models/model_evaluation.py
     deps:
     - path: model
       hash: md5
-      md5: e58c724d35cfeced94ea3730ce6bcfd7.dir
-      size: 6351956
+      md5: 7a522c2ef11bead68b1e313b7e234c69.dir
+      size: 6227007
       nfiles: 2
     - path: src/models/model_evaluation.py
       hash: md5
-      md5: 9be8e0e7f6843e4faac4ff0f8acb578f
-      size: 3802
+      md5: 358da1f9608b097d5bc8746e4b6133c4
+      size: 4356
     - path: vectorizer
       hash: md5
-      md5: b2730985e7429ea019c602ca180c4403.dir
+      md5: 876e06a2112722977f1d89c17af7bfd7.dir
       size: 36731
       nfiles: 2
     outs:
     - path: Metric/metric.yaml
       hash: md5
-      md5: dfe51927679eda3386793379732e410e
+      md5: 277a5bbb610aedff51d0068b64d5b272
       size: 109
     - path: Model_info/experiment.json
       hash: md5
-      md5: 44714e5ee26b0e07ebd4d2f4024a7e8a
-      size: 212
+      md5: b65157c3d7f7e90406074fee2deafc11
+      size: 210
   register_model:
     cmd: python3 src/models/model_register.py
     deps:
     - path: Model_info/experiment.json
       hash: md5
-      md5: 44714e5ee26b0e07ebd4d2f4024a7e8a
-      size: 212
+      md5: b65157c3d7f7e90406074fee2deafc11
+      size: 210
     - path: src/models/model_register.py
       hash: md5
-      md5: 9436b3057a7a0a8b8c7d4cf6abf6866b
-      size: 3975
+      md5: b2b1f4cb1ffaa6426678cc51c9c7fc71
+      size: 3013
