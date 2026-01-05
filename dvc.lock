@@ -58,7 +58,7 @@ stages:
     outs:
     - path: vectorizer/vectorizer.pkl
       hash: md5
-      md5: 12e4a936baba6a053b6e161b70d255ae
+      md5: eb587ccb6280c4f1efc317f6a5e2efd0
       size: 36715
   model_building:
     cmd: python3 src/models/model_building.py
@@ -70,47 +70,47 @@ stages:
       nfiles: 2
     - path: vectorizer/vectorizer.pkl
       hash: md5
-      md5: 12e4a936baba6a053b6e161b70d255ae
+      md5: eb587ccb6280c4f1efc317f6a5e2efd0
       size: 36715
     outs:
     - path: model/model.pkl
       hash: md5
-      md5: 2d65f263fdeff567900f900730da2fa3
-      size: 6502102
+      md5: ceadf6b7a2d3795fed890b82ac515560
+      size: 6297405
   model_evalution:
     cmd: python3 src/models/model_evaluation.py
     deps:
     - path: model
       hash: md5
-      md5: 044e668f03c7e560b04e0fb4ef17a800.dir
-      size: 6502113
+      md5: 231e8ebf3c9accfd0ad9c50642151d8b.dir
+      size: 6297416
       nfiles: 2
     - path: src/models/model_evaluation.py
       hash: md5
-      md5: 70e4475b6f8906649ca3b43b878a888d
-      size: 5200
+      md5: 9990389b4cc3b4ad1c2e2818eccff63f
+      size: 5176
     - path: vectorizer
       hash: md5
-      md5: 30492e17b39e631c1b0bf379a470deee.dir
+      md5: c65384298c151008b349be60fd0fdbe3.dir
       size: 36731
       nfiles: 2
     outs:
     - path: Metric/metric.yaml
       hash: md5
-      md5: 29a918e0f0acc9f8b357deb435c523c7
+      md5: 8423fa1fe742f2e3dc10674a09eff935
       size: 109
     - path: Model_info/experiment.json
       hash: md5
-      md5: 18b76c8cacc72a28c7d4487855d2ce1b
-      size: 261
+      md5: 01d58e35f2ff4f6e3b3d90229eac0c49
+      size: 148
   register_model:
     cmd: python3 src/models/model_register.py
     deps:
     - path: Model_info/experiment.json
       hash: md5
-      md5: 18b76c8cacc72a28c7d4487855d2ce1b
-      size: 261
+      md5: 01d58e35f2ff4f6e3b3d90229eac0c49
+      size: 148
     - path: src/models/model_register.py
       hash: md5
-      md5: 9436b3057a7a0a8b8c7d4cf6abf6866b
-      size: 3975
+      md5: 5fce36d8e5eb7d2569ee84ad332c45e9
+      size: 4103

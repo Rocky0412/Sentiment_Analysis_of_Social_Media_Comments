@@ -80,27 +80,31 @@ mlflow_uri='http://ec2-13-232-51-26.ap-south-1.compute.amazonaws.com:8000'
 mlflow.set_tracking_uri(mlflow_uri) #used to set uri
 mlflow.set_registry_uri(uri=mlflow_uri) #used to register model
 
+# ---------------------- Register Model ----------------------------
 def register_model(model_info):
     try:
-        # Prefer using the full artifact_uri if available
-        if "artifact_uri" in model_info:
-            model_uri = model_info["artifact_uri"]
-        else:
-            # fallback to run_id + artifact path
-            run_id = model_info["run_id"]
-            artifact_path = model_info.get("model", "model")
-            model_uri = f"runs:/{run_id}/{artifact_path}"
+        client = mlflow.tracking.MlflowClient()
 
+        # Use run_id + artifact folder instead of artifact_uri
+        run_id = model_info.get("run_id")
+        if not run_id:
+            raise ValueError("run_id is missing in model_info!")
+
+        artifact_path = model_info.get("model", "model")  # usually "model"
+        model_uri = f"runs:/{run_id}/{artifact_path}"  # correct MLflow URI
+
+        model_name = "my_model"  # keep a consistent name
         logger.info(f"Registering model from URI: {model_uri}")
 
-        client = mlflow.tracking.MlflowClient()
+        # Register the model
         model_version = mlflow.register_model(
             model_uri=model_uri,
-            name="sentiment_analysis_model"
+            name=model_name
         )
 
+        # Move model to Staging
         client.transition_model_version_stage(
-            name='sentiment_analysis_model',
+            name=model_name,
             version=model_version.version,
             stage="Staging"
         )
@@ -109,7 +113,6 @@ def register_model(model_info):
 
     except Exception as e:
         logger.error(f"Model registration failed: {e}")
-
 
 # --------------------- MAIN -------------------------
 if __name__ == '__main__':

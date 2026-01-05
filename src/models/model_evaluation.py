@@ -128,7 +128,7 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
 
         mlflow.log_artifact(vectorizer_path)
 
-        artifact_uri=mlflow.get_artifact_uri(run_id)
+        artifact_uri='model'
 
         model_info={
             "run_id" :run_id,
