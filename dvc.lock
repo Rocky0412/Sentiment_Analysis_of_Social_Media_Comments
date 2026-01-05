@@ -58,7 +58,11 @@ stages:
     outs:
     - path: vectorizer/vectorizer.pkl
       hash: md5
+<<<<<<< HEAD
       md5: 80e94c9a0cfcf405a5a926d4f3195085
+=======
+      md5: eb587ccb6280c4f1efc317f6a5e2efd0
+>>>>>>> eb0dce0
       size: 36715
   model_building:
     cmd: python3 src/models/model_building.py
@@ -70,18 +74,28 @@ stages:
       nfiles: 2
     - path: vectorizer/vectorizer.pkl
       hash: md5
+<<<<<<< HEAD
       md5: 80e94c9a0cfcf405a5a926d4f3195085
+=======
+      md5: eb587ccb6280c4f1efc317f6a5e2efd0
+>>>>>>> eb0dce0
       size: 36715
     outs:
     - path: model/model.pkl
       hash: md5
+<<<<<<< HEAD
       md5: 1dd77087badeec7967ceb8446d2d96fd
       size: 6226996
+=======
+      md5: ceadf6b7a2d3795fed890b82ac515560
+      size: 6297405
+>>>>>>> eb0dce0
   model_evalution:
     cmd: python3 src/models/model_evaluation.py
     deps:
     - path: model
       hash: md5
+<<<<<<< HEAD
       md5: 7a522c2ef11bead68b1e313b7e234c69.dir
       size: 6227007
       nfiles: 2
@@ -92,25 +106,55 @@ stages:
     - path: vectorizer
       hash: md5
       md5: 876e06a2112722977f1d89c17af7bfd7.dir
+=======
+      md5: 231e8ebf3c9accfd0ad9c50642151d8b.dir
+      size: 6297416
+      nfiles: 2
+    - path: src/models/model_evaluation.py
+      hash: md5
+      md5: 9990389b4cc3b4ad1c2e2818eccff63f
+      size: 5176
+    - path: vectorizer
+      hash: md5
+      md5: c65384298c151008b349be60fd0fdbe3.dir
+>>>>>>> eb0dce0
       size: 36731
       nfiles: 2
     outs:
     - path: Metric/metric.yaml
       hash: md5
+<<<<<<< HEAD
       md5: 277a5bbb610aedff51d0068b64d5b272
       size: 109
     - path: Model_info/experiment.json
       hash: md5
       md5: b65157c3d7f7e90406074fee2deafc11
       size: 210
+=======
+      md5: 8423fa1fe742f2e3dc10674a09eff935
+      size: 109
+    - path: Model_info/experiment.json
+      hash: md5
+      md5: 01d58e35f2ff4f6e3b3d90229eac0c49
+      size: 148
+>>>>>>> eb0dce0
   register_model:
     cmd: python3 src/models/model_register.py
     deps:
     - path: Model_info/experiment.json
       hash: md5
+<<<<<<< HEAD
       md5: b65157c3d7f7e90406074fee2deafc11
       size: 210
     - path: src/models/model_register.py
       hash: md5
       md5: b2b1f4cb1ffaa6426678cc51c9c7fc71
       size: 3013
+=======
+      md5: 01d58e35f2ff4f6e3b3d90229eac0c49
+      size: 148
+    - path: src/models/model_register.py
+      hash: md5
+      md5: 5fce36d8e5eb7d2569ee84ad332c45e9
+      size: 4103
+>>>>>>> eb0dce0
