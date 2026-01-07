@@ -15,6 +15,7 @@ asyncssh==2.22.0
 atpublic==7.0.0
 attrs==25.4.0
 backoff==2.2.1
+boto3>=1.26,<1.27
 billiard==4.2.4
 blinker==1.9.0
 cachetools==6.2.4
