@@ -90,6 +90,10 @@ def preprocessing(comments):
 
 
 # ------------------ Prediction API ------------------
+@app.route('/')
+def Hello():
+    return jsonify({'name':'Hello'})
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
