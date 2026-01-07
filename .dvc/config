@@ -1,4 +1,6 @@
 [core]
-    remote = myremote
+    remote = myremotes3
 ['remote "myremote"']
     url = ../remote
+['remote "myremotes3"']
+    url = s3://remote-s3-dvc
