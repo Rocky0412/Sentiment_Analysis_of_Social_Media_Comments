@@ -113,7 +113,7 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
         try:
             mlflow.register_model(
                 model_uri=logged_model.model_uri,
-                name="sentiment_analysis_model"
+                name="my_model"
             )
         except Exception as e:
             logger.warning(f"Model registration skipped: {e}")

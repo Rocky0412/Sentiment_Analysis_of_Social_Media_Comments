@@ -50,7 +50,7 @@ def register_model(model_info: dict):
         artifact_path = model_info.get("model", "model")  # default = "model"
 
         model_uri = f"runs:/{run_id}/{artifact_path}"
-        model_name = "sentiment_analysis_model"
+        model_name = "my_model"
 
         logger.info(f"Registering model from URI: {model_uri}")
 
