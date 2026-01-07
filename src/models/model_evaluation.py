@@ -61,16 +61,10 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
 
         # ---------------- Metrics ----------------
         metric = {
-<<<<<<< HEAD
             "accuracy": accuracy_score(ytest, ypred),
             "f1": f1_score(ytest, ypred, average="weighted"),
             "recall": recall_score(ytest, ypred, average="weighted"),
             "precision": precision_score(ytest, ypred, average="weighted")
-=======
-                "accuracy": acc,
-                "f1": f1,
-                "recall": recall,
-                "precision": precision,
             }
 
             # File path for YAML
@@ -99,7 +93,6 @@ def model_evaluation(model_path: str, vectorizer_path: str, input_path: str):
             "artifact_uri": artifact_uri,
             "model":"model",
             "model_uri":logged_model.model_uri
->>>>>>> eb0dce0
         }
 
         # Save metrics to YAML
