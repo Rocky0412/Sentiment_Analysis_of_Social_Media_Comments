@@ -48,8 +48,6 @@ mlflow.set_registry_uri(mlflow_uri)
 
 
 # ---------------------- Register Model ----------------------------
-<<<<<<< HEAD
-=======
 '''def register_model(model_info):
     try:
         run_id = model_info["run_id"]
@@ -85,12 +83,10 @@ mlflow.set_tracking_uri(mlflow_uri) #used to set uri
 mlflow.set_registry_uri(uri=mlflow_uri) #used to register model
 
 # ---------------------- Register Model ----------------------------
->>>>>>> eb0dce0
+
 def register_model(model_info):
     try:
         client = mlflow.tracking.MlflowClient()
-
-<<<<<<< HEAD
         # CASE 1: If artifact_uri exists
         if "artifact_uri" in model_info:
             base_uri = model_info["artifact_uri"]
@@ -107,7 +103,6 @@ def register_model(model_info):
             model_uri = f"runs:/{run_id}/model"
 
         logger.info(f"Registering model with URI: {model_uri}")
-=======
         # Use run_id + artifact folder instead of artifact_uri
         run_id = model_info.get("run_id")
         if not run_id:
@@ -118,24 +113,18 @@ def register_model(model_info):
 
         model_name = "my_model"  # keep a consistent name
         logger.info(f"Registering model from URI: {model_uri}")
->>>>>>> eb0dce0
 
         # Register the model
         model_version = mlflow.register_model(
             model_uri=model_uri,
             name=model_name
         )
-<<<<<<< HEAD
+
         logger.info(f"Model registered successfully as version {model_version.version}")
-        # Move model to staging
-        client.transition_model_version_stage(
-            name="sentiment_analysis_model",
-=======
 
         # Move model to Staging
         client.transition_model_version_stage(
             name=model_name,
->>>>>>> eb0dce0
             version=model_version.version,
             stage="Staging"
         )
