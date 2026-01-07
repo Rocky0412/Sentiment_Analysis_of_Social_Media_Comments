@@ -38,6 +38,7 @@ jobs:
           echo "Running DVC pipeline..."
           dvc pull
           dvc repro          # reproduces the pipeline
+          dvc push
 
 
       
