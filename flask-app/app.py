@@ -54,6 +54,7 @@ def load_vectorizer(run_id: str, artifact_path="vectorizer", file_name="vectoriz
     client = MlflowClient()
 
     # Download artifact folder locally
+    #run_id="b3b2716bedfc403cbf7c935670a66a26"
     local_path = client.download_artifacts(run_id, artifact_path)
 
     vectorizer_file = os.path.join(local_path, file_name)
