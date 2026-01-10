@@ -4,3 +4,4 @@ mlflow==3.8.1
 mlflow_skinny==3.8.1
 mlflow_tracing==3.8.1
 nltk==3.9.2
+boto3

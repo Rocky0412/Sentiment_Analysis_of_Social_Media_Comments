@@ -14,6 +14,8 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 # --------------- Load MLflow Model -----------------
 
@@ -47,23 +49,16 @@ with open('Model_info/experiment.json','r') as f:
     data=json.load(f)
 run_id=data['run_id']
 
-def load_vectorizer(run_id: str, artifact_path="vectorizer", file_name="vectorizer.pkl"):
-    """
-    Downloads the vectorizer artifact folder and loads vectorizer.pkl.
-    """
+def load_vectorizer(run_id: str, artifact_path="vectorizer.pkl"):
     client = MlflowClient()
-
-    # Download artifact folder locally
-    #run_id="b3b2716bedfc403cbf7c935670a66a26"
     local_path = client.download_artifacts(run_id, artifact_path)
 
-    vectorizer_file = os.path.join(local_path, file_name)
-
-    with open(vectorizer_file, "rb") as f:
+    with open(local_path, "rb") as f:
         vectorizer = pickle.load(f)
 
     print("Vectorizer loaded successfully!")
     return vectorizer
+
 
 vectorizer = load_vectorizer(run_id)
 
@@ -122,7 +117,7 @@ def predict():
 
 # ------------------ Run Flask ------------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
 
 
